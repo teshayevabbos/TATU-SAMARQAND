@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<title>Services School</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<style>
+  .swiper {
+    width: 85%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 450px;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+</style>
+{% endblock head %}
+
+
+{% block content %}
+<div class="container-xxl py-5 bg-primary hero-header mb-5">
+  <div class="container my-5 py-5 px-lg-5">
+    <div class="row g-5 py-5">
+      <div class="col-12 text-center">
+        <h1 class="text-white animated zoomIn">Teachers</h1>
+        <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb justify-content-center">
+            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+            <li class="breadcrumb-item"><a class="text-white" href="#">Pages</a></li>
+            <li class="breadcrumb-item text-white active" aria-current="page">Teachers</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Navbar & Hero End -->
+
+
+<!-- Full Screen Search Start -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+  <div class="modal-dialog modal-fullscreen">
+    <div class="modal-content" style="background: rgba(29, 29, 39, 0.7);">
+      <div class="modal-header border-0">
+        <button type="button" class="btn bg-white btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body d-flex align-items-center justify-content-center">
+        <div class="input-group" style="max-width: 600px;">
+          <input type="text" class="form-control bg-transparent border-light p-3" placeholder="Type search keyword">
+          <button class="btn btn-light px-4"><i class="bi bi-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Full Screen Search End -->
+
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    {% for i in context %}
+    <a data-hash="slide1" class="swiper-slide" href="{% url 'info' i.name %}">
+        <img src="{{i.img.url}}" alt="">
+    </a>
+    {% endfor %}
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-pagination"></div>
+</div>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    loop: true,
+    hashNavigation: {
+      watchState: true,
+    },
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+  });
+</script>
+
+{% endblock content %}

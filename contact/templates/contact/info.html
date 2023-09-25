@@ -3,6 +3,7 @@
 
 {% block head %}
 <title>Teachers {{obj.name}} School</title>
+
 <style>
   #teacher-profile {
     background: #111525;
@@ -164,6 +165,45 @@
       width: 100%;
     }
   }
+  .download{
+    display: inline-block;
+    margin-top: 50px;
+    margin-left: 500px;
+    color: #fffff0;
+    background-color: #3586ff;;
+    padding: 10px 30px;
+    border-radius: 15px;
+    text-decoration: none;
+  }
+  .download:hover{
+    background-color: #2124B1;
+    transition: 0.5s;
+    color: #fff;
+  }
+  form .form-item{
+    border: none;
+    outline: none;
+    width: 100%;
+    background: transparent;
+    color: #fff;
+    padding: 20px 0;
+    border-bottom: 2px solid #3586ff;
+    margin-bottom: 20px;
+  }
+  form select{
+    width: 100px;
+    background: #3586ff;
+    color: #fff;
+  }
+  form .btn1{
+    padding: 8px 20px;
+    background: #00f;
+    color: #fff;
+    border-radius: 15px;
+  }
+  form .btn1:hover{
+    background: #3586ff;
+  }
 </style>
 {% endblock head %}
 
@@ -212,7 +252,35 @@
         </h1>
         <p>
           {{obj.text}} <strong>Ish Stavkasi:</strong>{{obj.rate}}
-        </p>
+        </p><br>
+
+
+        <form action="" method="post">
+          {% csrf_token %}
+          <input class="form-item" type="text" name="title" placeholder="Title">
+          <br>
+          <div class="file">
+            <input type="file" name="filename">
+
+            <select name="types">
+              <option value=".docx">.docx</option>
+              <option value=".pdf">.pdf</option>
+              <option value=".xlsx">.xlsx</option>
+              <option value=".pptx">.pptx</option>
+            </select>
+          </div>
+          <br>
+          <div class="datetime">
+            <input type="date" name="date" placeholder="Date">
+
+            <input type="time" name="time" placeholder="Time">
+          </div>
+          <br>
+          <input class="btn1" type="submit" value="Submit">
+        </form>
+
+        <a type="submit" href="{{obj.document.url}}" download class="download">Download <i class="fa-solid fa-download"></i></a>
+
       </div>
     </div>
   </div>

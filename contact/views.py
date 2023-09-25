@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 from .models import *
 
+
 def ContactView(request):
   if request.method == 'POST':
     name = request.POST.get('name')
@@ -19,4 +20,13 @@ def TeacherView(request):
 
 def TeachersInfoView(request,name):
   obj = InfoModell.objects.get(name=name)
+  if request.method == 'POST':
+    title = request.POST.get('title')
+    pdf = request.POST.get('filename')
+    types = request.POST.get('types')
+    date = request.POST.get('date')
+    time = request.POST.get('time')
+    doc = DocumentModel.objects.create(title=title,document=pdf,types=types,date=date,time=time)
+    doc.save()
+    return redirect('teachers')
   return render(request,'contact/info.html',{'obj':obj})

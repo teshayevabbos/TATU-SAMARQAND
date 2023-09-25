@@ -53,6 +53,7 @@
                 <a href="{% url 'team' %}" class="nav-item nav-link">Team</a>
                 <a href="{% url 'contact' %}" class="nav-item nav-link">Contact</a>
                 {% if user.username %}
+                <a href="{% url 'news' %}" class="nav-item nav-link">News</a>
                 <a href="{% url 'logout' %}" class="nav-item nav-link">log Out</a>
                 {% else %}
                 <a href="{% url 'signup' %}" class="nav-item nav-link">Sign Up</a>

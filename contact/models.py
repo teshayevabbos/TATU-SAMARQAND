@@ -15,6 +15,13 @@ class TeacherModell(models.Model):
     name = models.CharField(max_length=200)
     occupation = models.CharField(max_length=100)
     rate = models.CharField(max_length=50)
+    choise = (
+        ('katta','oqituvchi'),
+        ('dotsent','dotsent'),
+        ('professor','professor'),
+        ('assistent','assistent')
+    )
+    teacher23 = models.CharField(max_length=214,choices=choise)
 
     def __str__(self):
         return self.name
@@ -27,7 +34,18 @@ class InfoModell(models.Model):
     occupation = models.CharField(max_length=100)
     text = models.TextField(max_length=1000)
     rate = models.CharField(max_length=50)
-    teacher = models.ForeignKey(TeacherModell,on_delete=models.CASCADE)
+    document = models.FileField(upload_to='pdf')
+  
 
     def __str__(self):
         return self.name
+
+class DocumentModel(models.Model):
+    title = models.CharField(max_length=100)
+    document = models.FileField(upload_to='pdf')
+    types = models.CharField(max_length=100)
+    date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title

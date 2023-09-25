@@ -13,3 +13,22 @@ class TeamModel(models.Model):
     def __str__(self):
         return self.ful_name
 
+class NewsModel(models.Model):
+    title = models.CharField(max_length=100)
+    img1 = models.ImageField(upload_to='img')
+    text = models.TextField(max_length=1000)
+    datatime = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
+
+class InfoNewsModel(models.Model):
+    title = models.CharField(max_length=100)
+    img1 = models.ImageField(upload_to='img')
+    text = models.TextField(max_length=1000)
+    img2 = models.ImageField(upload_to='img')
+    img3 = models.ImageField(upload_to='img',blank=True)
+    new = models.ForeignKey(NewsModel,models.CASCADE)
+
+    def __str__(self) -> str:
+        return self.title

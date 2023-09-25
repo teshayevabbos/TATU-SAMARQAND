@@ -13,3 +13,4 @@ admin.site.register(ContactModel,ContactAdmin)
 admin.site.register(TeacherModell,TeacherAdmin)
 
 admin.site.register(InfoModell)
+admin.site.register(DocumentModel)
